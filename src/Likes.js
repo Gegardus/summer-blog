@@ -1,4 +1,5 @@
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
+import { incrementLikes, decrementLikes } from './redux/actions';
 
 function Likes (props) {
     console.log('render > ', props);
@@ -10,7 +11,7 @@ function Likes (props) {
     )
 }
 
-// 'state' from store should be connected with props in this component
+// 'state' from store is connected with props for this component
 function mapStateToProps(state) {
     console.log('mapStateToProps > ', state);
     const { likesReducer } = state; 
@@ -20,25 +21,13 @@ function mapStateToProps(state) {
     }
 }
 
-// now we create connect function for actions
+// action functions are connected with store
 function mapDispatchToProps(dispatch) {
     return {
-        onIncrementLikes: () => {
-            console.log('click-plus');
-            // here we use only type for action without any data
-            // this action goes to reducer
-            const action = {type: 'INCREMENT'}
-            dispatch(action)
-        },
-
-        onDecrementLikes: () => {
-            console.log('click-minus');
-            // here we use only type for action without any data
-            // this action goes to reducer
-            const action = {type: 'DECREMENT'}
-            dispatch(action)
-        }
+        onIncrementLikes: () => dispatch(incrementLikes()),
+        onDecrementLikes: () => dispatch(decrementLikes())
     }
 }
 
+// our react app component Likes we connect with redux
 export default connect(mapStateToProps, mapDispatchToProps)(Likes);
