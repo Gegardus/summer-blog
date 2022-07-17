@@ -2,7 +2,6 @@ import {connect} from 'react-redux'
 
 function Likes (props) {
     console.log('render > ', props);
-
     return (
         <div className="button-controls">
           <button onClick={props.onIncrementLikes}> ❤ {props.likes} </button>
@@ -12,8 +11,6 @@ function Likes (props) {
 }
 
 // 'state' from store should be connected with props in this component
-
-
 function mapStateToProps(state) {
     console.log('mapStateToProps > ', state);
     const { likesReducer } = state; 
