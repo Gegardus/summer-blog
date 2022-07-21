@@ -75,6 +75,7 @@ import {
       }, 2000)
     }
   }
+  
   export function errorOff() {
     return {
       type: ERROR_DISPLAY_OFF,
