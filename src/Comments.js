@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { commentCreate } from './redux/actions'
+import { commentCreate, commentsLoad } from './redux/actions'
 import uniqid from 'uniqid'
 import SingleComment from "./SingleComment";
 
@@ -26,6 +26,10 @@ function Comments(props) {
         const id = uniqid();
         dispatch(commentCreate(textComment, id));        
     }
+
+    useEffect(() => {
+        dispatch(commentsLoad());
+      }, [commentsLoad]); // eslint-disable-line react-hooks/exhaustive-deps
 
      console.log('COMMENT >>> ', comments)
 
